@@ -1,11 +1,12 @@
 **1장 Overview**
   - [1-1. Overview](/Chapter01.%20Overview/1-1.%20Overview.md)
+  - [1-2. Recovery Mode](/Chapter01.%20Overview/1-2.%20Recovery%20Mode.md)
 
 **2장 Basic ROS2**
   - [2-1. Basic ROS2](/Chapter02.%20Basic%20ROS2/2-1.%20Basic%20ROS2.md)
 
 **3장 Basic Robotics**
-  - [3-1. 로봇 공학과 용어들](/Chapter03.%20Basic%20Robotics/3-1.%20로봇공학과%20용어들.md)
+  - [3-1. 로봇공학과 용어들](/Chapter03.%20Basic%20Robotics/3-1.%20로봇공학과%20용어들.md)
   - [3-2. 좌표계](/Chapter03.%20Basic%20Robotics/3-2.%20좌표계.md)
   - [3-3. 순기구학과 역기구학](/Chapter03.%20Basic%20Robotics/3-3.%20순기구학과%20역기구학.md)
 
