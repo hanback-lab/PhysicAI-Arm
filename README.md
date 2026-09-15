@@ -1,6 +1,5 @@
 **1장 Overview**
   - [1-1. Overview](/Chapter01.%20Overview/1-1.%20Overview.md)
-  - [1-2. Recovery Mode](/Chapter01.%20Overview/1-2.%20Recovery%20Mode.md)
 
 **2장 Basic ROS2**
   - [2-1. Basic ROS2](/Chapter02.%20Basic%20ROS2/2-1.%20Basic%20ROS2.md)
