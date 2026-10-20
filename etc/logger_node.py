@@ -19,7 +19,7 @@ class LoggerNode(Node):
     def __init__(self):
         super().__init__("logger_node")
 
-        self.declare_parameter("save_dir", "<save_dir>")
+        self.declare_parameter("save_dir", "<raw_dir>")
         self.declare_parameter("episode_id", 0)
         self.declare_parameter("task_name", "<task_name>")
 
