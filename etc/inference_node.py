@@ -17,8 +17,8 @@ from sensor_msgs.msg import Image, JointState
 from std_srvs.srv import Trigger
  
  
-TOP_CALIB_PATH = "./top_camera_calib.yaml"
-FRONT_CALIB_PATH = "./front_camera_calib.yaml"
+TOP_CALIB_PATH = "/home/soda/top_camera_calib.yaml"
+FRONT_CALIB_PATH = "/home/soda/front_camera_calib.yaml"
  
  
 ARM_JOINTS = [
@@ -122,6 +122,7 @@ class InferenceNode(Node):
         self.declare_parameter("top_calib_path", TOP_CALIB_PATH)
         self.declare_parameter("front_calib_path", FRONT_CALIB_PATH)
         self.declare_parameter("show_images", True)
+        self.declare_parameter("n_action_steps", 50)
  
         self.show_images = bool(
             self.get_parameter("show_images").value
@@ -200,8 +201,27 @@ class InferenceNode(Node):
  
         self.policy.to(self.device)
         self.policy.eval()
+
+        n_steps = int(self.get_parameter("n_action_steps").value)
+        cfg = self.policy.config
+
+        if cfg.temporal_ensemble_coeff is not None:
+            self.get_logger().warn(
+                "temporal_ensemble_coeff is set; n_action_steps must stay 1. Ignoring override."
+            )
+        elif not 1 <= n_steps <= cfg.chunk_size:
+            raise ValueError(
+                f"n_action_steps={n_steps} must be in [1, chunk_size={cfg.chunk_size}]"
+            )
+        else:
+            cfg.n_action_steps = n_steps
+
+        self.get_logger().info(
+            f"chunk_size={cfg.chunk_size}, n_action_steps={cfg.n_action_steps}"
+        )
  
         self.preprocessor, self.postprocessor = (
+            
             make_pre_post_processors(
                 policy_cfg=self.policy.config,
                 pretrained_path=self.policy_path,
